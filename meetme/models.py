@@ -5,10 +5,10 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Account(AbstractUser):
-    phone = PhoneNumberField()
-    rating = models.IntegerField()
-    image = models.ImageField(upload_to='account_images')
-    tagline = models.TextField()
+    phone = PhoneNumberField(blank=True, null=True)
+    rating = models.IntegerField(blank=True, null=True)
+    image = models.ImageField(blank=True, null=True, upload_to='account_images')
+    tagline = models.TextField(blank=True)
 
 
 class Review(models.Model):
