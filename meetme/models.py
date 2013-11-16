@@ -9,6 +9,8 @@ class Account(AbstractUser):
     rating = models.IntegerField(blank=True, null=True)
     image = models.ImageField(blank=True, null=True, upload_to='account_images')
     tagline = models.TextField(blank=True)
+    category = models.ForeignKey('Category', null=True)
+    available = models.BooleanField(default=False)
 
 
 class Review(models.Model):
@@ -23,8 +25,9 @@ class Category(models.Model):
     image = models.ImageField(upload_to='category_images')
 
 
-class Activity(models.Model):
-    account = models.ForeignKey(Account)
-    tagline = models.CharField(max_length=140)
-    description = models.TextField()
-    category = models.ForeignKey(Category)
+class Reservation(models.Model):
+    local = models.ForeignKey(Account, related_name='local')
+    visitor = models.ForeignKey(Account, related_name='visitor')
+    day = models.IntegerField()
+    time_range = models.IntegerField()
+    local_response = models.TextField(blank=True)
