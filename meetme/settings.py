@@ -39,6 +39,7 @@ INSTALLED_APPS = (
 
     'south',
     'meetme',
+    'compressor',
 )
 
 MIDDLEWARE_CLASSES = (
