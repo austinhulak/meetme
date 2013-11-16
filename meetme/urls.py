@@ -11,4 +11,6 @@ urlpatterns = patterns('',
 
     url(r'^$', 'meetme.views.main', name='main'),
     url(r'^admin/', include(admin.site.urls)),
+
+    url(r'^logout/', 'meetme.views.logout', name='logout'),
 )
