@@ -142,9 +142,10 @@ AUTHENTICATION_BACKENDS = (
 FACEBOOK_APP_ID = os.environ['FACEBOOK_APP_ID']
 FACEBOOK_API_SECRET = os.environ['FACEBOOK_API_SECRET']
 FACEBOOK_AUTH_EXTRA_ARGUMENTS = {'display': 'touch'}
+FACEBOOK_EXTENDED_PERMISSIONS = ['email']
 
 SOCIAL_AUTH_STORAGE = 'social.apps.django_app.me.models.DjangoStorage'
-SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = True
+SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = True  # doesn't seem to work
 
 # do not uncomment this!
 # https://github.com/omab/python-social-auth/issues/36#issuecomment-25330775
