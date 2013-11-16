@@ -7,4 +7,12 @@
     {% else %}
     <a href="{% url 'socialauth_begin' 'facebook' %}">Login with Facebook</a>
     {% endif %}
+
+    <div id="demo"></div>
+
+    <script type="text/javascript">
+        $(function () {
+            getLocation();
+        });
+    </script>
 {% endblock %}
