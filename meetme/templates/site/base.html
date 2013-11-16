@@ -1,0 +1,18 @@
+{% load static from staticfiles %}
+{% load compress %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Meet Me</title>
+    {% compress css %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.css" %}">
+    {% endcompress %}
+
+    {% compress js %}
+    <script type="text/javascript" src="{% static "js/bootstrap.js" %}"></script>
+    {% endcompress %}
+</head>
+<body>
+{% block content %}{% endblock %}
+</body>
+</html>
