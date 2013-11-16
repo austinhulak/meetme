@@ -7,6 +7,7 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'meetme.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
+    url(r'', include('social_auth.urls')),
 
     url(r'^$', 'meetme.views.main', name='main'),
     url(r'^admin/', include(admin.site.urls)),
