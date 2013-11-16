@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>MeetMe | It's Saturday Night... {% block title %}{% endblock %}</title>
+        {% load static %}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/bootstrap-responsive.min.css"/>
+        <script type="text/javascript" src="{{STATIC_URL}}js/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src="{{STATIC_URL}}js/scripts.js"></script>
+        <script type="text/javascript" src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+
+    </head>
+    <body>
+        <div id="body-content" class="container">
+            {% block body_block%}
+            {% endblock %}
+        </div>
+        <hr />
+        <div id="footer-content" class="container">
+            <a href="/buoy/">Take me home</a>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{%block title%}Buoy Data{% endblock %}
+
+{%block body_block %}
+<script>
+        jQuery(window).ready(function(){
+            jQuery("#btnInit").click(initiate_geolocation);
+        });
+        function initiate_geolocation() {
+            navigator.geolocation.getCurrentPosition(handle_geolocation_query,handle_errors);
+        }
+        function handle_errors(error)
+        {
+            switch(error.code)
+            {
+                case error.PERMISSION_DENIED: alert("user did not share geolocation data");
+                break;
+                case error.POSITION_UNAVAILABLE: alert("could not detect current position");
+                break;
+                case error.TIMEOUT: alert("retrieving position timed out");
+                break;
+                default: alert("unknown error");
+                break;
+            }
+        }
+        function handle_geolocation_query(position){
+            alert('Lat: ' + position.coords.latitude +
+                  ' Lon: ' + position.coords.longitude);
+        }
+</script>
+<h1>It's Saturday evening.. You are trying to... </h1>
+    <div class="row">
+        <div class="col-xs-6 col-xs-offset-3">
+            <img src="http://placehold.it/350x150" class="img-responsive" alt="Responsive image">
+        </div>
+    </div>
+
+{% endblock %}
