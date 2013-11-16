@@ -29,6 +29,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,10 +39,11 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'south',
-    'meetme',
+    'social_auth',
     'compressor',
-)
 
+    'meetme',
+)
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -86,3 +88,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'meetme.Account'
+
+AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.facebook.FacebookBackend',
+)
+
+FACEBOOK_APP_ID = os.environ['FACEBOOK_APP_ID']
+FACEBOOK_API_SECRET = os.environ['FACEBOOK_API_SECRET']
+
+SOCIAL_AUTH_STORAGE = 'social.apps.django_app.me.models.DjangoStorage'
