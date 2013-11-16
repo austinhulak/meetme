@@ -1,6 +1,12 @@
 # Django settings for meetme project.
 import os
 
+PROJECT_ROOT = os.path.dirname(os.path.dirname(__file__))
+
+SQLITE_DIR = os.path.join(PROJECT_ROOT, 'db')
+if not os.path.exists(SQLITE_DIR):
+    os.makedirs(SQLITE_DIR)
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -12,8 +18,8 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'db.sqlite3',                      # Or path to database file if using sqlite3.
+        'ENGINE': 'django.db.backends.sqlite3',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': os.path.join(SQLITE_DIR, 'db.sqlite3'),  # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
