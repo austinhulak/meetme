@@ -1,0 +1,1 @@
+Hi, someone wants to hang out.  http://{{ site.domain }}{% url 'show_reservation' reservation.id %}

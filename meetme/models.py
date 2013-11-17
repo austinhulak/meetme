@@ -1,7 +1,12 @@
+from django.conf import settings
 from django.contrib.auth.models import AbstractUser
+from django.contrib.sites.models import Site
 from django.db import models
+from django.template import Context, loader
 
 from phonenumber_field.modelfields import PhoneNumberField
+
+from utils.twillio import send_text
 
 
 class Account(AbstractUser):
@@ -45,5 +50,16 @@ class Reservation(models.Model):
         if not kwargs['created']:
             return
 
-        print 'send text!'
+        reservation = instance
+        context = Context({
+            'reservation': reservation,
+            'site': Site.objects.get(pk=settings.SITE_ID),
+        })
+
+        rendered = loader.render_to_string(
+            'meetme/text/request.sms',
+            context_instance=context
+        )
+
+        send_text(rendered, reservation.local.phone.raw_input)
 models.signals.post_save.connect(Reservation.post_save, sender=Reservation)
