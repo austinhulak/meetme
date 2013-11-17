@@ -45,7 +45,7 @@
 
    <div class="row text-center">
 	<form method="POST" action="{{ request.path }}"> {% csrf_token %}
-	<textarea class="form-control" rows="4" name="local_response">Yes lets meet up {{ reservation.time_range }} at [State and Victoria] at [8:30pm]!</textarea>
+	<textarea class="form-control" rows="4" name="local_response">Yes lets meet up {{ reservation.time_range }} at the Museum of Contemporary Art at 6:00pm!</textarea>
 	<br>
 	<button type="submit" class="btn btn-lg btn-info">Send</button>
 	</form>
