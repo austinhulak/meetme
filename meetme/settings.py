@@ -153,6 +153,16 @@ FACEBOOK_EXTENDED_PERMISSIONS = ['email']
 SOCIAL_AUTH_STORAGE = 'social.apps.django_app.me.models.DjangoStorage'
 SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = True  # doesn't seem to work
 
+SOCIAL_AUTH_PIPELINE = (
+    'social_auth.backends.pipeline.social.social_auth_user',
+    'social_auth.backends.pipeline.associate.associate_by_email',
+    'social_auth.backends.pipeline.user.get_username',
+    'social_auth.backends.pipeline.user.create_user',
+    'social_auth.backends.pipeline.social.associate_user',
+    'social_auth.backends.pipeline.user.update_user_details',
+    'meetme.pipelines.get_user_avatar',
+)
+
 # do not uncomment this!
 # https://github.com/omab/python-social-auth/issues/36#issuecomment-25330775
 #SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
