@@ -11,7 +11,6 @@ from meetme.models import Category
 def category(request, category_id):
     pass
 
-
 @login_required
 def main(request):
     context = {
