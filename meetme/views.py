@@ -75,16 +75,6 @@ def profile(request, profile_id):
                               context, context_instance=RequestContext(request))
 
 
-@login_required
-def local(request, category_id):
-    local_expert = Account.objects.get()
-
-    local_expert.update(available=True)
-    
-    return render_to_response('meetme/profile.html',
-                                context, context_instance=RequestContext(request))
-
-
 def login(request):
     context = {}
 
@@ -104,6 +94,16 @@ def logout(request):
 
 def privacy(request):
     return render_to_response('meetme/terms.html')
+
+
+def im_available(request):
+    if request.method != 'POST':
+        raise Exception('not post!')
+
+    request.user.available = True
+    request.user.save()
+	
+    return HttpResponse('ok')
 
 
 def make_request(request):

@@ -25,36 +25,45 @@ function spin() {
 }
 
 
-$(function () {
-    var requestButton = $('#request');
+function button_click_ajax(button_id, ajax_url, data){
+	var button = $(button_id);
+        var buttonWidth = button.width();
 
-    requestButton.click(function () {
-        var buttonWidth = requestButton.width();
-
-        requestButton.width(buttonWidth);
-        requestButton.css({"text-align": "center"});
-        requestButton.html('<div id="spinner"></div>');
+        button.width(buttonWidth);
+        button.css({"text-align": "center"});
+        button.html('<div id="spinner"></div>');
 
         var spinner = $('#spinner');
         var spinInterval = spin();
 
         $.ajax({
-            url: '/make_request/',
+            url: ajax_url,
             type: 'POST',
-            data: {
-                account_id: localId
-            },
+            data: data,
 
             success: function () {
                 clearInterval(spinInterval);
 
                 spinner.hide();
-                $('#request')
+                $(button_id)
                     .html("Done!")
                     .removeClass("btn-info")
                     .addClass("btn-success");
             }
         });
+}
+
+
+$(function () {
+    var request_button_id = '#request'
+    $(request_button_id).click(function () {
+	button_click_ajax(request_button_id, '/make_request/', {account_id: localId});
+    });
+
+
+    var avail_button_id = '#im_available'
+    $(avail_button_id).click(function () {
+	button_click_ajax(avail_button_id, '/im_available/', {});
     });
 
     $('a').click(function() {
@@ -62,3 +71,5 @@ $(function () {
         return false;
     });
 });
+
+
