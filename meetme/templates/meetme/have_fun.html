@@ -4,4 +4,11 @@
     {{ block.super }}
     <link rel="stylesheet" type="text/css" href="{% static "css/login.css" %}"/>
 {% endblock %}
-{% block body_id %}splash{% endblock %}
+
+{% block content %}	
+	<div class="row text-center">
+	<h1>Have fun!</h1>
+	</div>
+{% endblock %}
+
+{% block body_id %}id="splash"{% endblock %}
