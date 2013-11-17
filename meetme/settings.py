@@ -9,7 +9,7 @@ SQLITE_DIR = os.path.join(PROJECT_ROOT, 'db')
 if not os.path.exists(SQLITE_DIR):
     os.makedirs(SQLITE_DIR)
 
-DEBUG = True
+DEBUG = bool(os.environ.get('DEBUG', True))
 TEMPLATE_DEBUG = DEBUG
 
 TEMPLATE_CONTEXT_PROCESSORS += (
@@ -19,6 +19,14 @@ TEMPLATE_CONTEXT_PROCESSORS += (
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
+
+ALLOWED_HOSTS = [
+    'simplymeet.co',
+    'g6.local',
+    'localhost',
+    'g6.local:8000',
+    'localhost:8000',
+]
 
 MANAGERS = ADMINS
 
@@ -189,18 +197,31 @@ LOGGING = {
             '()': 'django.utils.log.RequireDebugFalse'
         }
     },
+    'formatters': {
+        'detailed': {
+            'format': '%(asctime)s %(name)s line:%(lineno)-4d %(levelname)-8s %(message)s',
+        },
+    },
     'handlers': {
         'mail_admins': {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
-        }
+        },
+        'info_stream': {
+            'level': 'INFO',
+            'filters': [],
+            'class': 'logging.StreamHandler',
+            'formatter': 'detailed',
+        },
     },
     'loggers': {
         'django.request': {
-            'handlers': ['mail_admins'],
+            'handlers': ['info_stream'],
             'level': 'ERROR',
             'propagate': True,
         },
     }
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
