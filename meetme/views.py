@@ -1,3 +1,5 @@
+import json
+
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
@@ -117,6 +119,12 @@ def im_available(request):
 
     return HttpResponse('ok')
 
+def check_response(request, reservation_id):
+    reservation = Reservation.objects.get(pk=reservation_id)
+    text = reservation.local_response or ''
+	
+    return HttpResponse(json.dumps({'text': text}))
+
 
 def make_request(request):
     if request.method != 'POST':
@@ -136,8 +144,12 @@ def make_request(request):
         day=day,
         time_range=time_range
     )
-
-    return HttpResponseRedirect(reverse('show_reservation', args=(reservation.id,)))
+    data = {
+	"reservation_id": reservation.id
+	}
+ 
+    return HttpResponse(json.dumps(data))  
+#HttpResponseRedirect(reverse('show_reservation', args=(reservation.id,)))
 
 
 def show_reservation(request, reservation_id):

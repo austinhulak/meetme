@@ -43,7 +43,7 @@ function button_click_ajax(button_id, ajax_url, data, success){
             type: 'POST',
             data: data,
 
-            success: function () {
+            success: function (data) {
                 clearInterval(spinInterval);
 
                 spinner.hide();
@@ -52,20 +52,45 @@ function button_click_ajax(button_id, ajax_url, data, success){
                     .removeClass("btn-info")
                     .addClass("btn-success");
 		if (success){
-			success();
+			success($.parseJSON(data));
 		}
             }
         });
 }
 
+function checkResponse(responseId){
+      $.ajax({
+            url: '/check_response/'+responseId+'/',
+            type: 'GET',
+
+            success: function (data) {
+		var jsonData = $.parseJSON(data);
+		if (jsonData.text){
+	                clearInterval(responseInterval);
+			$('#response_text').html(jsonData.text);
+		}
+            }
+        });
+}
+
+var responseInterval = null;
 
 $(function () {
-
+	
     var request_button_id = '#request'
     $(request_button_id).click(function () {
+	var theButton = $(this);
 	button_click_ajax(request_button_id, '/make_request/', {
 		account_id: localId,
 		time_range: $('#time-range-input').attr('value')
+	}, 
+	function(data){
+		var template = $('#template');
+		theButton.replaceWith(template.html());
+		spin();
+		responseInterval = setInterval(function(){
+			checkResponse(data.reservation_id);	
+		}, 3000);
 	});
     });
 
