@@ -1,9 +1,23 @@
 {% extends "site/base.html" %}
 {% load staticfiles %}
 
+{% block css %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/login.css"/>
+{% endblock %}
+
+{% block js %}
+    {{ block.super }}
+    <script src="{% static "js/login.js" %}"></script>
+{% endblock %}
+
 {% block body_id %}splash{% endblock %}
 {% block content %}
+    <div class="spinner-container">
+        <div id="spinner" style="display: none;"></div>
+    </div>
+
     <div class="fb-login">
-        <a href="{% url 'socialauth_begin' 'facebook' %}"><img src="{% static "images/fb_login.png" %}"></a>
+        <a href="{% url 'socialauth_begin' 'facebook' %}"><img id="fb-login" src="{% static "images/fb_login.png" %}"></a>
     </div>
 {% endblock %}

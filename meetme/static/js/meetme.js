@@ -18,6 +18,8 @@ function spin() {
     var count = 12;
     var current = 0;
 
+    spinner.show();
+
     return setInterval(function () {
         var newPos = "-" + (++current % count * 26) + "px 0px";
         spinner.css({"background-position": newPos});
