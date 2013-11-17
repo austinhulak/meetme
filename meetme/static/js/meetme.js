@@ -27,7 +27,7 @@ function spin() {
 }
 
 
-function button_click_ajax(button_id, ajax_url, data){
+function button_click_ajax(button_id, ajax_url, data, success){
 	var button = $(button_id);
         var buttonWidth = button.width();
 
@@ -51,6 +51,9 @@ function button_click_ajax(button_id, ajax_url, data){
                     .html("Done!")
                     .removeClass("btn-info")
                     .addClass("btn-success");
+		if (success){
+			success();
+		}
             }
         });
 }
@@ -65,7 +68,9 @@ $(function () {
 
     var avail_button_id = '#im_available'
     $(avail_button_id).click(function () {
-	button_click_ajax(avail_button_id, '/im_available/', {category_id: categoryId});
+	button_click_ajax(avail_button_id, '/im_available/', {category_id: categoryId}, function(){
+	document.location = document.location.href;
+});
     });
 
     $('a').click(function() {
