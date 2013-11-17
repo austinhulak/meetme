@@ -12,6 +12,6 @@
     {% endif %}
 
     {% for category in categories %}
-        <h3><a href="{% url 'category' category.id %}">{{ category }}</a></h3>
+        <h3><a href="{% url 'category' category.id %}">{{ category }} <img src="{{ category.image_filename }}"></a></h3>
     {% endfor %}
 {% endblock %}

@@ -26,8 +26,13 @@ def category(request, category_id):
 
 @login_required
 def main(request):
+    categories = Category.objects.all()
+
+    for item in categories:
+        item.image_filename = '/static/images/{}.png'.format(item.name.lower())
+
     context = {
-        'categories': Category.objects.all(),
+        'categories': categories,
     }
 
     if not request.user.phone:
