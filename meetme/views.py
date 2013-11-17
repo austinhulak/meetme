@@ -88,6 +88,10 @@ def local(request, category_id):
 def login(request):
     context = {}
 
+    # when the user is already logged in go to the main page
+    if request.user.id:
+        return HttpResponseRedirect(reverse('main'))
+
     return render_to_response('meetme/login.html',
                               context,
                               context_instance=RequestContext(request))
