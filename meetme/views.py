@@ -16,7 +16,7 @@ def category(request, category_id):
 
     context = {
         'category': category,
-        'people':  Account.objects.filter(category=category, available=True),
+        'people':  Account.objects.filter(category=category, available=True).exclude(phone__isnull=True),
     }
 
     return render_to_response('meetme/category.html',
