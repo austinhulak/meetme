@@ -1,7 +1,17 @@
 {% extends "site/base.html" %}
 {% block content %}
+
+<div class="panel panel-default">
+  <div class="panel-heading text-center">We need your phone number to connect you with new friends!</div>
+  <div class="panel-body">
     <form name="form" method="POST" action="{{ request.path }}">{% csrf_token %}
-    {{ form }}
-    <input type="submit" value="save">
+    <div class="row text-center">
+    {{ form.phone }}
+    </div>
+    <div class="row text-center" style="padding-top:10px">
+	    <input class="btn btn-lg btn-info" type="submit" value="save">
+    </div>
     </form>
+  </div>
+</div>
 {% endblock %}
