@@ -7,7 +7,7 @@ from django.template import RequestContext
 from meetme.forms import PhoneForm
 from utils.time import get_available_times
 from meetme.models import Account, Category, Reservation, Review
-
+from utils.twillio import clean_phone_number
 
 
 @login_required
@@ -41,7 +41,11 @@ def main(request):
 @login_required
 def set_phone(request):
     if request.method == 'POST':
-        form = PhoneForm(request.POST)
+        # clean the phone number before validating it
+        post_data = request.POST.copy()
+        post_data['phone'] = clean_phone_number(post_data['phone'])
+
+        form = PhoneForm(post_data)
         if form.is_valid():
             request.user.phone = form.cleaned_data['phone']
             request.user.save()
