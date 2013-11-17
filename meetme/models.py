@@ -38,3 +38,11 @@ class Reservation(models.Model):
     day = models.IntegerField()
     time_range = models.IntegerField()
     local_response = models.TextField(blank=True)
+
+    @classmethod
+    def post_save(cls, sender, instance, **kwargs):
+        if not kwargs['created']:
+            return
+
+        print 'send text!'
+models.signals.post_save.connect(Reservation.post_save, sender=Reservation)
