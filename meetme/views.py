@@ -16,3 +16,15 @@ def main(request):
 def logout(request):
     auth_logout(request)
     return HttpResponseRedirect(reverse('main'))
+
+
+def privacy(request):
+    return render_to_response('meetme/terms.html')
+
+
+def support(request):
+    return render_to_response('meetme/terms.html')
+
+
+def terms(request):
+    return render_to_response('meetme/terms.html')
