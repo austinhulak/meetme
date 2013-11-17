@@ -3,6 +3,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 
+
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'meetme.views.home', name='home'),
@@ -13,6 +14,8 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^category/(?P<category_id>\d+)/$', 'meetme.views.category', name='category'),
     url(r'^profile/(?P<profile_id>\d+)/$', 'meetme.views.profile', name='profile'),
+
+    url(r'^make_request/$', 'meetme.views.make_request', name='make_request'),
 
     url(r'^privacy/$', 'meetme.views.privacy', name='privacy'),
     url(r'^terms/$', 'meetme.views.terms', name='terms'),
