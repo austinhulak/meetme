@@ -13,6 +13,9 @@ class Account(AbstractUser):
     category = models.ForeignKey('Category', null=True)
     available = models.BooleanField(default=False)
 
+    def __unicode__(self):
+        return unicode("{} {}".format(self.first_name, self.last_name))
+
 
 class Review(models.Model):
     rating = models.IntegerField()
