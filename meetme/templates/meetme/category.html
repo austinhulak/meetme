@@ -1,81 +1,80 @@
 {% extends "site/base.html" %}
 {% block content %}
-<div id="body-content" class="container">
             <style>
-                .col-xs-12 {
-                    padding:10px;
-                }
                 .col-centered{
                     float: none;
                     margin: 0 auto;
                 }
-                .photo {
+                /*.image-wrapper {
                     position: relative;
-                    margin: 0 auto;
-                    display: table;
-                }
-                div.imageSub { position: relative; }
-                div.imageSub img { z-index: 1; }
-                div.imageSub div {
+                }*/
+                .description {
                     position: absolute;
-                    width:100%;
-                    bottom: 0;
-                    padding: 5px;
-                }
-                div.imageSub div.blackbg {
-                    z-index: 2;
+                    bottom: 10px;
+                    z-index: 1;
+                    height:50px;
 
-                    background-color: #000;
-                    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
-                    filter: alpha(opacity=30);
-                    opacity: 0.3;
+                    /* styling for overlay below */
+                    background-color: black;
+                    font-family: helvetica;
+                    font-size: 15px;
+                    color: white;
+                    opacity: .6;
+                    filter: alpha(opacity=60);
                 }
-                div.imageSub div.label {
-                    z-index: 3;
-                    color:white;
-                    text-align: left;
-                }
-                .pull-left {
-                    float: left !important;
-                }
-                .image-text {
-                    z-index:100;
+                p.description-content {
+                    padding:10px;
                     position:absolute;
-                    color:white;
-                    font-weight:bold;
+                    z-index: 10;
+                    bottom: 5px;
                 }
+                .description-container {
+                    position: relative;
+                    height:10px;
 
+                }
+                a.overlay-link {
+                    color:white;
+                    width:100%;
+                }
             </style>
+            <script>
+
+                $(function() {
+                    setTimeout(function(){
+                        $('.description').each( function() {
+                        var newWidth = $(this).parent().parent().each(function() {
+                            var width = $('img', this).width();
+                            $('.description',this).css('width', width);
+                            $('overlay-link',this).css('width',width);
+                            $('.image-wrapper',this).css('width',width)
+                            $('.description-container',this).css('width', width);
+                        });
+                    });
+                    }, 100);
+                });
+            </script>
             <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
             <button id="im_available" type="button" class="btn btn-primary btn-lg btn-block">I'm Available! <span class="glyphicon glyphicon-dashboard"></span></button>
             </nav>
             <h3 class="text-center">Find a Local</h3>
-
             <div class="row">
-
-		{% for person in people %}
-
-                <div class="col-xs-12">
-                    <div class="imageSub photo col-centered">
-                        <a href="{% url "profile" person.id %}">
-
-                            <img src="{{ person.image_url }}" class="img-responsive img-rounded" alt="Responsive image">
-                            <div class="blackbg img-rounded">
-                                <h5 style="color:white; opacity:1;">{{ person }}<span class="pull-right glyphicon glyphicon-chevron-right"></span></h5>
-                            </div>
-                        </a>
-                    </div>
+		  {% for person in people %}
+                <div class="col-xs-12 col-md-4 col-sm-4">
+                    <a href="{% url "profile" person.id %}" class="overlay-link">
+                        <img src="{{ person.image_url }}" class="img-responsive img-rounded col-centered" alt="Responsive image">
+                        <div class="description-container col-centered">
+                            <p class="description-content">{{ person }}<span class="pull-right glyphicon glyphicon-chevron-right"></span></p>
+                            <div class="description img-rounded"></div>
+                        </div>
+                     </a>
                 </div>
 
 		{% empty %}
-		
+
 		No users found :(
-		
+
 		{% endfor %}
             </div>
-        </div>
-        <hr />
-        <div id="footer-content" class="container">
-            <a href="{% url 'main' %}">Take me home</a>
         </div>
 {% endblock %}
