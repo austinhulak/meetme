@@ -50,6 +50,17 @@ def profile(request, profile_id):
                               context, context_instance=RequestContext(request))
 
 
+@login_required
+def local(request, category_id):
+    local_expert = Account.objects.get()
+
+    local_expert.update(available=True)
+    
+    return render_to_response('meetme/profile.html',
+                                context, context_instance=RequestContext(request))
+
+
+
 def login(request):
     context = {}
 

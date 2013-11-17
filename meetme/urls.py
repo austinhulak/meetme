@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     url(r'^profile/(?P<profile_id>\d+)/$', 'meetme.views.profile', name='profile'),
 
     url(r'^make_request/$', 'meetme.views.make_request', name='make_request'),
+    url(r'^local/(?P<profile_id>\d+)/$', 'meetme.views.local', name='local'),
 
     url(r'^privacy/$', 'meetme.views.privacy', name='privacy'),
     url(r'^terms/$', 'meetme.views.terms', name='terms'),
