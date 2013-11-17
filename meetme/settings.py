@@ -1,6 +1,8 @@
 # Django settings for meetme project.
 import os
 
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
+
 PROJECT_ROOT = os.path.dirname(os.path.dirname(__file__))
 
 SQLITE_DIR = os.path.join(PROJECT_ROOT, 'db')
@@ -9,6 +11,10 @@ if not os.path.exists(SQLITE_DIR):
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+
+TEMPLATE_CONTEXT_PROCESSORS += (
+    'meetme.context_processors.request_path',
+)
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
