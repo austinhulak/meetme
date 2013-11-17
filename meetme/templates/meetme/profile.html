@@ -59,7 +59,7 @@
       <form method="POST" action="{% url "make_request" %}"> {% csrf_token %}
 	<input type="hidden" id="time-range-input" name="time_range" value="{{ available_times.0 }}">
 	<input type="hidden" name="account_id" value="{{ user.id }}">
-      <button id="request" type="submit" class="btn btn-lg btn-info" >Let's have an Adventure!</button>
+        <button id="request" type="submit" class="btn btn-lg btn-info" >Let's have an Adventure!</button>
       </form>
 
    </div>

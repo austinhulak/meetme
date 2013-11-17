@@ -118,11 +118,12 @@ def make_request(request):
         raise Exception('not post!')
 
     account_id = request.POST['account_id']
+    time_range = request.POST['time_range']
 
     visitor = request.user
     local = Account.objects.get(pk=account_id)
     day = 1
-    time_range = 1
+    #time_range = 1
 
     reservation = Reservation.objects.create(
         local=local,

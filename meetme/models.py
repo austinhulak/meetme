@@ -42,7 +42,7 @@ class Reservation(models.Model):
     local = models.ForeignKey(Account, related_name='local')
     visitor = models.ForeignKey(Account, related_name='visitor')
     day = models.IntegerField()
-    time_range = models.IntegerField()
+    time_range = models.TextField(blank=True) #models.IntegerField()
     local_response = models.TextField(blank=True)
 
     @classmethod
