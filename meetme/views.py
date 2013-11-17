@@ -14,7 +14,7 @@ from utils.twillio import clean_phone_number
 
 @login_required
 def category(request, category_id):
-    category = Category.objects.get(pk=category_id)
+    category = Category.objects.get(pk=category_id).order_by('-rating')
 
     context = {
         'category': category,
