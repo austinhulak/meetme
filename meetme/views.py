@@ -117,7 +117,8 @@ def im_available(request):
     request.user.category = Category.objects.get(pk=category_id)
     request.user.save()
 
-    return HttpResponse('ok')
+    return HttpResponse(json.dumps({'response':'ok'}))
+
 
 def check_response(request, reservation_id):
     reservation = Reservation.objects.get(pk=reservation_id)
