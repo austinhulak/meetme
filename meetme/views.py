@@ -99,6 +99,16 @@ def make_request(request):
     return HttpResponse('ok')
 
 
+def show_reservation(request, reservation_id):
+    context = {
+        'reservation': Reservation.objects.get(pk=reservation_id),
+    }
+
+    return render_to_response('meetme/show_reservation.html',
+                              context,
+                              context_instance=RequestContext(request))
+
+
 def support(request):
     return render_to_response('meetme/terms.html')
 

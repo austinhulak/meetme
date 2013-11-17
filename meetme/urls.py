@@ -20,6 +20,7 @@ urlpatterns = patterns('',
 
     url(r'^privacy/$', 'meetme.views.privacy', name='privacy'),
     url(r'^terms/$', 'meetme.views.terms', name='terms'),
+    url(r'^show_reservation/(?P<reservation_id>\d+)/$', 'meetme.views.show_reservation', name='show_reservation'),
     url(r'^support/$', 'meetme.views.support', name='support'),
 
     url(r'^login/$', 'meetme.views.login', name='login'),
