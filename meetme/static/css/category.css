@@ -1,0 +1,39 @@
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+/*.image-wrapper {
+    position: relative;
+}*/
+.description {
+    position: absolute;
+    bottom: 10px;
+    z-index: 1;
+    height:50px;
+
+    /* styling for overlay below */
+    background-color: black;
+    font-family: helvetica;
+    font-size: 15px;
+    color: white;
+    opacity: .6;
+    filter: alpha(opacity=60);
+}
+p.description-content {
+    padding:10px;
+    position:absolute;
+    z-index: 10;
+    bottom: 5px;
+}
+.description-container {
+    position: relative;
+    height:10px;
+
+}
+a.overlay-link {
+    color:white;
+    width:100%;
+}
+#body-content {
+    padding-bottom: 50px;
+}
