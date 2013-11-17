@@ -2,3 +2,13 @@
     background: url(../images/splash.png) no-repeat;
     background-size: 100%;
 }
+
+#spinner {
+    width: 26px;
+    height: 26px;
+    background: url(../images/spinner.png) no-repeat;
+    background-clip: content-box;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
