@@ -14,11 +14,11 @@ from utils.twillio import clean_phone_number
 
 @login_required
 def category(request, category_id):
-    category = Category.objects.get(pk=category_id).order_by('-rating')
+    category = Category.objects.get(pk=category_id)
 
     context = {
         'category': category,
-        'people':  Account.objects.filter(category=category, available=True).exclude(phone__isnull=True),
+        'people':  Account.objects.filter(category=category, available=True).exclude(phone__isnull=True).order_by('-rating'),
     }
 
     return render_to_response('meetme/category.html',
