@@ -15,7 +15,7 @@ class Account(AbstractUser):
     image = models.ImageField(blank=True, null=True, upload_to='account_images')
     image_url = models.TextField(blank=True)
     tagline = models.TextField(blank=True)
-    category = models.ForeignKey('Category', null=True)
+    category = models.ForeignKey('Category', blank=True, null=True)
     available = models.BooleanField(default=False)
 
     def __unicode__(self):
