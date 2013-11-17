@@ -5,18 +5,19 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from meetme.models import Account, Category, Reservation
+from meetme.models import Account, Category, Reservation, Review
+
 
 
 @login_required
 def category(request, category_id):
     category = Category.objects.get(pk=category_id)
-    
+
     context = {
         'category': category,
         'people':  Account.objects.filter(category=category, available=True),
-    }    
-    
+    }
+
     return render_to_response('meetme/category.html',
                               context,
                               context_instance=RequestContext(request))
@@ -33,13 +34,20 @@ def main(request):
                               context,
                               context_instance=RequestContext(request))
 
+
 @login_required
 def profile(request, profile_id):
 
-    context = {}
+    user = Account.objects.get(id=profile_id)
+    reviews = Review.objects.filter(account=user)
+
+    context = {
+          'user': user,
+          'reviews': reviews,
+    }
 
     return render_to_response('meetme/profile.html',
-                                context, context_instance=RequestContext(request))
+                              context, context_instance=RequestContext(request))
 
 
 def login(request):

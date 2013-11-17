@@ -19,6 +19,7 @@ class Account(AbstractUser):
 
 class Review(models.Model):
     rating = models.IntegerField()
+    headline = models.TextField(blank=True)
     author = models.ForeignKey(Account, related_name='review_author')
     account = models.ForeignKey(Account)
     comment = models.TextField()

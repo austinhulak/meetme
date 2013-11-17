@@ -1,114 +1,65 @@
-{% load staticfiles %}
-{% load compress %}
-<!DOCTYPE html>
-<html lang="en">
-   <head>
-      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-      <title>MeetMe | User Profile</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <!-- Latest compiled and minified CSS -->
-      <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-      <!-- Optional theme -->
-      <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
-      <!-- Latest compiled and minified JavaScript -->
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-      <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
-      <script type="text/javascript">
-          var localId = {{ user.id }};
-      </script>
+{% extends 'site/base.html' %}
+{% block content %}
+   <script type="text/javascript">
+       var localId = {{ user.id }};
+   </script>
+   <style>
+      .row {
+      padding:10px;
+      }
+   </style>
+   <div class="row">
+      <div class="col-xs-7">
+         <img src="{{ user.image_url}}" class="img-responsive img-circle" alt="Responsive image">
+      </div>
+      <div class="col-xs-5">
+         <div class="col-xs-12">
+            <strong>Name</strong>:<br>
+            {{ user.first_name }} {{user.last_name}}
+         </div>
+         <br>
+         <div class="col-xs-12">
+            <strong>Rating</strong>:
+            <span class="label label-success"> {{ user.rating }}</span>
+         </div>
+         <br>
+         <div class="col-xs-12">
+            <strong>Tag Line</strong>:<br>
+            {{ user.tagline }}
+            <!-- <img src="http://placehold.it/300x100" class="img-responsive" alt="Responsive image"> -->
+         </div>
+      </div>
 
-      {% compress js %}
-      <script src="{% static "js/meetme.js" %}"></script>
-      <script src="{% static "js/ajax_setup.js" %}"></script>
-      {% endcompress %}
-
-      {% compress css %}
-      <link rel="stylesheet" href="{% static "css/meetme.css" %}">
-      {% endcompress %}
-   </head>
-   <body>
-      <div id="body-content" class="container">
-      <style>
-         .row {
-         padding:10px;
-         }
-      </style>
-      <div class="row">
-         <div class="col-xs-7">
-            <img src="http://placehold.it/300x300" class="img-responsive" alt="Responsive image">
-         </div>
-         <div class="col-xs-5">
-            <div class="col-xs-12">
-               <strong>Name</strong>:<br>
-               {{user.first}} {{user.last}
-               <!-- <img src="http://placehold.it/300x100" class="img-responsive" alt="Responsive image"> -->
-            </div>
-            <br>
-            <div class="col-xs-12">
-               <strong>Rating</strong>:<br>
-               <img src="http://placehold.it/300x100" class="img-responsive" alt="Responsive image">
-            </div>
-            <br>
-            <div class="col-xs-12">
-               <strong>Tag Line</strong>:<br>
-               {{user.tag_line}}
-               <!-- <img src="http://placehold.it/300x100" class="img-responsive" alt="Responsive image"> -->
-            </div>
-         </div>
+   </div>
+   <div class="row text-center">
+      <div class="btn-group">
+         <button type="button" class="btn btn-default">Sat. Evening</button>
+         <button type="button" class="btn btn-default">Sun. Morning</button>
+         <button type="button" class="btn btn-default">Sun. Afternoon</button>
       </div>
-      <div class="row text-center">
-         <div class="btn-group">
-            <button type="button" class="btn btn-default">Sat. Eveing</button>
-            <button type="button" class="btn btn-default">Sun. Morning</button>
-            <button type="button" class="btn btn-default">Sun. Afternoon</button>
-         </div>
+   </div>
+   <div class="row text-center">
+      <button id="request" type="button" class="btn btn-lg btn-info dropdown-toggle" data-toggle="dropdown">Let's have an Adventure!</button>
+   </div>
+   <div class="panel panel-default list-group">
+      <div class="panel-heading">
+         <h3 class="panel-title">
+         Reviews
+         </h3>
       </div>
-      <div class="row text-center">
-         <button id="request" type="button" class="btn btn-lg btn-info dropdown-toggle" data-toggle="dropdown">Let's have an Adventure!</button>
-      </div>
-      <div class="panel panel-default list-group">
-         <div class="panel-heading">
-            <h3 class="panel-title">
-            Reviews</h3>
-         </div>
-         <div class="panel-body">
+      <div class="panel-body">
+         {% for review in reviews %}
             <div class="row list-group">
                <div class="media">
                   <a class="pull-left" href="#">
-                  <img class="media-object" src="http://placehold.it/75x40" class="img-responsive" alt="Responsive image">
+                  <img src="{{ review.author.image_url }}" class="img-responsive img-circle" height="75px" width="75px" alt="Responsive image">
                   </a>
                   <div class="media-body">
-                     <h4 class="media-heading">Review Title</h4>
-                     Cras justo odio
+                     <h4 class="media-heading">{{ review.headline }}</h4>
+                     {{ review.comment }}
                   </div>
                </div>
             </div>
-            <div class="row list-group">
-               <div class="media">
-                  <a class="pull-left" href="#">
-                  <img class="media-object" src="http://placehold.it/75x40" class="img-responsive" alt="Responsive image">
-                  </a>
-                  <div class="media-body">
-                     <h4 class="media-heading">Review Title</h4>
-                     Vestibulum at eros
-                  </div>
-               </div>
-            </div>
-            <div class="row list-group">
-               <div class="media">
-                  <a class="pull-left" href="#">
-                  <img class="media-object" src="http://placehold.it/75x40" class="img-responsive" alt="Responsive image">
-                  </a>
-                  <div class="media-body">
-                     <h4 class="media-heading">Review Title</h4>
-                     Vestibulum at eros
-                  </div>
-               </div>
-            </div>
-         </div>
+         {% endfor %}
       </div>
-      <div id="footer-content" class="container">
-         <a href="/">Take me home</a>
-      </div>
-   </body>
-</html>
+{% endblock %}
