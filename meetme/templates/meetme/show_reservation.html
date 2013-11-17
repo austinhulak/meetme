@@ -27,17 +27,17 @@
       <div class="col-xs-5">
          <div class="col-xs-12">
             <strong>Name</strong>:<br>
-            {{ user.first_name }} {{user.last_name}}
+            {{ reservation.visitor.first_name }} {{reservation.visitor.last_name}}
          </div>
          <br>
          <div class="col-xs-12">
             <strong>Rating</strong>:
-            <span class="label label-{% if user.rating > 75 %}success{% elif user.rating > 55 and user.rating <= 75%}warning{% else %}danger{% endif %}"> {{ user.rating }}</span>
+            <span class="label label-{% if user.rating > 75 %}success{% elif user.rating > 55 and user.rating <= 75%}warning{% else %}danger{% endif %}"> {{ reservation.visitor.rating }}</span>
          </div>
          <br>
          <div class="col-xs-12">
             <strong>Tag Line</strong>:<br>
-            {{ user.tagline }}
+            {{ reservation.visitor.tagline }}
          </div>
       </div>
    </div>
