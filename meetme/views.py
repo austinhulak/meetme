@@ -131,18 +131,27 @@ def make_request(request):
         time_range=time_range
     )
 
-    return HttpResponse('ok')
+    return HttpResponseRedirect(reverse('show_reservation', args=(reservation.id,)))
 
 
 def show_reservation(request, reservation_id):
+    reservation = Reservation.objects.get(pk=reservation_id)
+    if request.method == "POST":
+        reservation.local_response = request.POST['local_response']
+	reservation.save()
+	return HttpResponseRedirect(reverse('have_fun'))
+
     context = {
-        'reservation': Reservation.objects.get(pk=reservation_id),
+        'reservation': reservation,
     }
 
     return render_to_response('meetme/show_reservation.html',
                               context,
                               context_instance=RequestContext(request))
 
+
+def have_fun(request):
+    return render_to_response('meetme/have_fun.html')
 
 def support(request):
     return render_to_response('meetme/terms.html')

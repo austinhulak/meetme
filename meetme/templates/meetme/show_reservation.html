@@ -1,4 +1,55 @@
-{% extends "site/base.html" %}
+{% extends 'site/base.html' %}
 {% block content %}
-    {{ reservation }}
+   <script type="text/javascript">
+       var localId = {{ local.id }};
+   </script>
+   <style>
+      .row {
+      padding:10px;
+      }
+      .center-cropped {
+      width: 75px;
+      height: 75px;
+      background-position: center center;
+      background-repeat: no-repeat;
+      }
+      .center-cropped-large {
+      width: 185px;
+      height: 185px;
+      background-position: center center;
+      background-repeat: no-repeat;
+      }
+   </style>
+   <div class="row">
+      <div class="col-xs-7">
+         <img src="{{ user.image_url}}" class="img-responsive img-circle center-cropped-large" alt="Responsive image">
+      </div>
+      <div class="col-xs-5">
+         <div class="col-xs-12">
+            <strong>Name</strong>:<br>
+            {{ user.first_name }} {{user.last_name}}
+         </div>
+         <br>
+         <div class="col-xs-12">
+            <strong>Rating</strong>:
+            <span class="label label-{% if user.rating > 75 %}success{% elif user.rating > 55 and user.rating <= 75%}warning{% else %}danger{% endif %}"> {{ user.rating }}</span>
+         </div>
+         <br>
+         <div class="col-xs-12">
+            <strong>Tag Line</strong>:<br>
+            {{ user.tagline }}
+         </div>
+      </div>
+   </div>
+
+
+   <div class="row text-center">
+	<form method="POST" action="{{ request.path }}"> {% csrf_token %}
+	<textarea class="form-control" rows="4" name="local_response">Yes lets meet up [tonight] at [State and Victoria] at [8:30pm]!</textarea>
+	<br>
+	<button type="submit" class="btn btn-lg btn-info">Send</button>
+	</form>
+   </div>
+   <div class="row text-center">
+   </div>
 {% endblock %}

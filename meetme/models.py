@@ -47,20 +47,24 @@ class Reservation(models.Model):
 
     @classmethod
     def post_save(cls, sender, instance, **kwargs):
-        if not kwargs['created']:
-            return
+	reservation = instance
+	context = Context({
+	    'reservation': reservation,
+	    'site': Site.objects.get(pk=settings.SITE_ID),
+	})
 
-        reservation = instance
-        context = Context({
-            'reservation': reservation,
-            'site': Site.objects.get(pk=settings.SITE_ID),
-        })
+        if kwargs['created']:
+		phone_number = reservation.local.phone.raw_input
+		template = 'meetme/text/request.sms'
+	else:
+		phone_number = reservation.visitor.phone.raw_input
+		template = 'meetme/text/response.sms'
 
-        rendered = loader.render_to_string(
-            'meetme/text/request.sms',
-            context_instance=context
-        )
+	rendered = loader.render_to_string(
+	    template,
+	    context_instance=context
+	)
 
-        send_text(rendered, reservation.local.phone.raw_input)
+        send_text(rendered, phone_number)
 
 models.signals.post_save.connect(Reservation.post_save, sender=Reservation)

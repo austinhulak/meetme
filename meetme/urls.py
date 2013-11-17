@@ -15,6 +15,8 @@ urlpatterns = patterns('',
     url(r'^category/(?P<category_id>\d+)/$', 'meetme.views.category', name='category'),
     url(r'^profile/(?P<profile_id>\d+)/$', 'meetme.views.profile', name='profile'),
  
+    url(r'^have_fun/$', 'meetme.views.have_fun', name='have_fun'),
+
     # ajax requests to handle buttons
     url(r'^im_available/$', 'meetme.views.im_available', name='im_available'),
     url(r'^make_request/$', 'meetme.views.make_request', name='make_request'),

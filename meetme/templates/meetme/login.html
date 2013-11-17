@@ -3,7 +3,7 @@
 
 {% block css %}
     {{ block.super }}
-    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/login.css"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/login.css" %}"/>
 {% endblock %}
 
 {% block js %}
