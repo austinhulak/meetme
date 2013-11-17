@@ -19,40 +19,84 @@
     <body>
         <div id="body-content" class="container">
             <style>
-                .row {
+                .col-xs-12 {
                     padding:10px;
                 }
-            </style>
-            <h1>Are you... </h1>
-            <div class="row">
-                <div class="col-xs-6">
-                    <img src="http://placehold.it/300x300" class="img-responsive" alt="Responsive image">
-                </div>
-                <div class="col-xs-6">
-                    <img src="http://placehold.it/300x300" class="img-responsive" alt="Responsive image">
-                </div>
+                .col-centered{
+                    float: none;
+                    margin: 0 auto;
+                }
+                .photo {
+                    position: relative;
+                    margin: 0 auto;
+                    display: table;
+                }
+                div.imageSub { position: relative; }
+                div.imageSub img { z-index: 1; }
+                div.imageSub div {
+                    position: absolute;
+                    width:100%;
+                    bottom: 0;
+                    padding: 5px;
+                }
+                div.imageSub div.blackbg {
+                    z-index: 2;
 
-            </div>
+                    background-color: #000;
+                    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+                    filter: alpha(opacity=30);
+                    opacity: 0.3;
+                }
+                div.imageSub div.label {
+                    z-index: 3;
+                    color:white;
+                    text-align: left;
+                }
+                .pull-left {
+                    float: left !important;
+                }
+                .image-text {
+                    z-index:100;
+                    position:absolute;
+                    color:white;
+                    font-weight:bold;
+                }
+
+            </style>
+            <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+            <button type="button" class="btn btn-primary btn-lg btn-block">I'm a Local <span class="glyphicon glyphicon-dashboard"></span></button>
+            </nav>
+            <h3 class="text-center">Find a Local</h3>
             <div class="row">
-                <div class="col-xs-4">
-                    <img src="http://placehold.it/300x300" class="img-responsive" alt="Responsive image">
+                <div class="col-xs-12 col-sm-6 col-lg-4">
+                    <div class="imageSub photo col-centered">
+                        <a href="#testing">
+                            <img src="http://placehold.it/300x300" class="img-responsive img-rounded" alt="Responsive image">
+                            <div class="blackbg img-rounded">
+                                <h5 style="color:white; opacity:1;">Learn More<span class="pull-right glyphicon glyphicon-chevron-right"></span></h5>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-                <div class="col-xs-4">
-                    <img src="http://placehold.it/300x300" class="img-responsive" alt="Responsive image">
+                <div class="col-xs-12 col-sm-6 col-lg-4">
+                    <div class="imageSub photo col-centered">
+                        <a href="#testing">
+                            <img src="http://placehold.it/300x300" class="img-responsive img-rounded" alt="Responsive image">
+                            <div class="blackbg img-rounded">
+                                <h5 style="color:white; opacity:1;">Learn More<span class="pull-right glyphicon glyphicon-chevron-right"></span></h5>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-                <div class="col-xs-4">
-                    <img src="http://placehold.it/300x300" class="img-responsive" alt="Responsive image">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-4">
-                    <img src="http://placehold.it/300x300" class="img-responsive" alt="Responsive image">
-                </div>
-                <div class="col-xs-4">
-                    <img src="http://placehold.it/300x300" class="img-responsive" alt="Responsive image">
-                </div>
-                <div class="col-xs-4">
-                    <img src="http://placehold.it/300x300" class="img-responsive" alt="Responsive image">
+                <div class="col-xs-12 col-sm-6 col-lg-4">
+                    <div class="imageSub photo col-centered">
+                        <a href="#testing">
+                            <img src="http://placehold.it/300x300" class="img-responsive img-rounded" alt="Responsive image">
+                            <div class="blackbg img-rounded">
+                                <h5 style="color:white; opacity:1;">Learn More<span class="pull-right glyphicon glyphicon-chevron-right"></span></h5>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

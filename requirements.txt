@@ -7,3 +7,4 @@ django-compressor==1.3
 django-social-auth==0.7.17
 gunicorn==0.17.2
 dj-static
+
