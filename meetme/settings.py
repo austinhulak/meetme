@@ -1,6 +1,12 @@
 # Django settings for meetme project.
 import os
 
+PROJECT_ROOT = os.path.dirname(os.path.dirname(__file__))
+
+SQLITE_DIR = os.path.join(PROJECT_ROOT, 'db')
+if not os.path.exists(SQLITE_DIR):
+    os.makedirs(SQLITE_DIR)
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -12,8 +18,8 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'db.sqlite3',                      # Or path to database file if using sqlite3.
+        'ENGINE': 'django.db.backends.sqlite3',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': os.path.join(SQLITE_DIR, 'db.sqlite3'),  # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
@@ -146,6 +152,16 @@ FACEBOOK_EXTENDED_PERMISSIONS = ['email']
 
 SOCIAL_AUTH_STORAGE = 'social.apps.django_app.me.models.DjangoStorage'
 SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = True  # doesn't seem to work
+
+SOCIAL_AUTH_PIPELINE = (
+    'social_auth.backends.pipeline.social.social_auth_user',
+    'social_auth.backends.pipeline.associate.associate_by_email',
+    'social_auth.backends.pipeline.user.get_username',
+    'social_auth.backends.pipeline.user.create_user',
+    'social_auth.backends.pipeline.social.associate_user',
+    'social_auth.backends.pipeline.user.update_user_details',
+    'meetme.pipelines.get_user_avatar',
+)
 
 # do not uncomment this!
 # https://github.com/omab/python-social-auth/issues/36#issuecomment-25330775
