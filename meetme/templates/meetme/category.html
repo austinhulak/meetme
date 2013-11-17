@@ -29,7 +29,7 @@
             <button id="im_available" type="button" class="btn btn-primary btn-lg btn-block">I'm Available! <span class="glyphicon glyphicon-dashboard"></span></button>
             </nav>
             <h3 class="text-center">Find a Local</h3>
-            <div class="row">
+            <div class="row people-container">
 		  {% for person in people %}
                 <div class="col-xs-12 col-md-4 col-sm-4">
                     <a href="{% url "profile" person.id %}" class="overlay-link">
