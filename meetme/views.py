@@ -114,7 +114,7 @@ def im_available(request):
     request.user.available = True
     request.user.category = Category.objects.get(pk=category_id)
     request.user.save()
-	
+
     return HttpResponse('ok')
 
 
