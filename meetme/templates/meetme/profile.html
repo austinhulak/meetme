@@ -7,10 +7,22 @@
       .row {
       padding:10px;
       }
+      .center-cropped {
+      width: 75px; // change to desired width.
+      height: 75px; // change to desired height.
+      background-position: center center;
+      background-repeat: no-repeat;
+      }
+      .center-cropped-large {
+      width: 185px; // change to desired width.
+      height: 185px; // change to desired height.
+      background-position: center center;
+      background-repeat: no-repeat;
+      }
    </style>
    <div class="row">
       <div class="col-xs-7">
-         <img src="{{ user.image_url}}" class="img-responsive img-circle" alt="Responsive image">
+         <img src="{{ user.image_url}}" class="img-responsive img-circle center-cropped-large" alt="Responsive image">
       </div>
       <div class="col-xs-5">
          <div class="col-xs-12">
@@ -20,7 +32,7 @@
          <br>
          <div class="col-xs-12">
             <strong>Rating</strong>:
-            <span class="label label-success"> {{ user.rating }}</span>
+            <span class="label label-{% if user.rating > 75 %}success{% elif user.rating > 55 and user.rating <= 75%}warning{% else %}danger{% endif %}"> {{ user.rating }}</span>
          </div>
          <br>
          <div class="col-xs-12">
@@ -53,7 +65,7 @@
             <div class="row list-group">
                <div class="media">
                   <a class="pull-left" href="#">
-                  <img src="{{ review.author.image_url }}" class="img-responsive img-circle" height="75px" width="75px" alt="Responsive image">
+                  <img src="{{ review.author.image_url }}" class="img-responsive img-circle center-cropped" alt="Responsive image">
                   </a>
                   <div class="media-body">
                      <h4 class="media-heading">{{ review.headline }}</h4>
