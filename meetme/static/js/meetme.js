@@ -60,11 +60,17 @@ function button_click_ajax(button_id, ajax_url, data, success){
 
 
 $(function () {
+	/*
     var request_button_id = '#request'
     $(request_button_id).click(function () {
 	button_click_ajax(request_button_id, '/make_request/', {account_id: localId});
     });
-
+*/
+    $('.time-range').click(function(){
+	$('#time-range-input').attr("value",  $(this).html());
+	$('.time-range').removeClass('active');
+	$(this).addClass('active');
+    });
 
     var avail_button_id = '#im_available'
     $(avail_button_id).click(function () {

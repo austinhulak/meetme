@@ -47,15 +47,21 @@
       <div class="btn-group btn-group-sm">
 	{% for time in available_times %}
 	  {% if forloop.first %}
-         <button type="button" class="btn btn-default active">{{ time }}</button>
+         <button type="button" class="btn btn-default active time-range">{{ time }}</button>
 	  {% else %}
-	 <button type="button" class="btn btn-default">{{ time }}</button>
+	 <button type="button" class="btn btn-default time-range">{{ time }}</button>
 	  {% endif %}
 	{% endfor %}
       </div>
    </div>
    <div class="row text-center">
-      <button id="request" type="button" class="btn btn-lg btn-info dropdown-toggle" data-toggle="dropdown">Let's have an Adventure!</button>
+
+      <form method="POST" action="{% url "make_request" %}"> {% csrf_token %}
+	<input type="hidden" id="time-range-input" name="time_range" value="{{ available_times.0 }}">
+	<input type="hidden" name="account_id" value="{{ user.id }}">
+      <button id="request" type="submit" class="btn btn-lg btn-info" >Let's have an Adventure!</button>
+      </form>
+
    </div>
    <div class="panel panel-default list-group">
       <div class="panel-heading">
