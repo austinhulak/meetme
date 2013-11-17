@@ -65,7 +65,7 @@ $(function () {
 
     var avail_button_id = '#im_available'
     $(avail_button_id).click(function () {
-	button_click_ajax(avail_button_id, '/im_available/', {});
+	button_click_ajax(avail_button_id, '/im_available/', {category_id: categoryId});
     });
 
     $('a').click(function() {

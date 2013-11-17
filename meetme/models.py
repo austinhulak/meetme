@@ -62,4 +62,5 @@ class Reservation(models.Model):
         )
 
         send_text(rendered, reservation.local.phone.raw_input)
+
 models.signals.post_save.connect(Reservation.post_save, sender=Reservation)

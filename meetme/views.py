@@ -100,7 +100,10 @@ def im_available(request):
     if request.method != 'POST':
         raise Exception('not post!')
 
+    category_id = request.POST['category_id']
+
     request.user.available = True
+    request.user.category = Category.objects.get(pk=category_id)
     request.user.save()
 	
     return HttpResponse('ok')
