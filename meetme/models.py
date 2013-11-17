@@ -25,6 +25,9 @@ class Category(models.Model):
     name = models.CharField(max_length=64)
     image = models.ImageField(upload_to='category_images', blank=True, null=True)
 
+    def __unicode__(self):
+        return unicode(self.name)
+
 
 class Reservation(models.Model):
     local = models.ForeignKey(Account, related_name='local')
