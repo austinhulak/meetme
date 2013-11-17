@@ -5,10 +5,18 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
+from meetme.models import Category
+
+
+def category(request, category_id):
+    pass
+
 
 @login_required
 def main(request):
-    context = {}
+    context = {
+        'categories': Category.objects.all(),
+    }
 
     return render_to_response('meetme/main.html',
                               context,

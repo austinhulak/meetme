@@ -11,11 +11,7 @@
     <a href="{% url 'socialauth_begin' 'facebook' %}">Login with Facebook</a>
     {% endif %}
 
-    <div id="demo"></div>
-
-    <script type="text/javascript">
-        $(function () {
-            getLocation();
-        });
-    </script>
+    {% for category in categories %}
+        <h3><a href="{% url 'category' category.id %}">{{ category }}</a></h3>
+    {% endfor %}
 {% endblock %}
