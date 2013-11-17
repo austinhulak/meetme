@@ -8,6 +8,7 @@ class Account(AbstractUser):
     phone = PhoneNumberField(blank=True, null=True)
     rating = models.IntegerField(blank=True, null=True)
     image = models.ImageField(blank=True, null=True, upload_to='account_images')
+    image_url = models.TextField(blank=True)
     tagline = models.TextField(blank=True)
     category = models.ForeignKey('Category', null=True)
     available = models.BooleanField(default=False)
