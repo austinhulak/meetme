@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from meetme.forms import PhoneForm
 from utils.time import get_available_times
 from meetme.models import Account, Category, Reservation, Review
 
@@ -23,14 +24,37 @@ def category(request, category_id):
                               context_instance=RequestContext(request))
 
 
-
 @login_required
 def main(request):
     context = {
         'categories': Category.objects.all(),
     }
 
+    if not request.user.phone:
+        return HttpResponseRedirect(reverse('set_phone'))
+
     return render_to_response('meetme/main.html',
+                              context,
+                              context_instance=RequestContext(request))
+
+
+@login_required
+def set_phone(request):
+    if request.method == 'POST':
+        form = PhoneForm(request.POST)
+        if form.is_valid():
+            request.user.phone = form.cleaned_data['phone']
+            request.user.save()
+
+            return HttpResponseRedirect(reverse('main'))
+    else:
+        form = PhoneForm()
+
+    context = {
+        'form': form
+    }
+
+    return render_to_response('meetme/set_phone.html',
                               context,
                               context_instance=RequestContext(request))
 
@@ -42,9 +66,9 @@ def profile(request, profile_id):
     reviews = Review.objects.filter(account=user)
 
     context = {
-          'user': user,
-          'reviews': reviews,
-	  'available_times': get_available_times(),
+        'user': user,
+        'reviews': reviews,
+        'available_times': get_available_times(),
     }
 
     return render_to_response('meetme/profile.html',
@@ -59,7 +83,6 @@ def local(request, category_id):
     
     return render_to_response('meetme/profile.html',
                                 context, context_instance=RequestContext(request))
-
 
 
 def login(request):
