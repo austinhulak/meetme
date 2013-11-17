@@ -23,7 +23,7 @@ class Review(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=64)
-    image = models.ImageField(upload_to='category_images')
+    image = models.ImageField(upload_to='category_images', blank=True, null=True)
 
 
 class Reservation(models.Model):
