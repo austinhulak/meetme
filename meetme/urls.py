@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     url(r'^$', 'meetme.views.main', name='main'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^category/(?P<category_id>\d+)/$', 'meetme.views.category', name='category'),
+    url(r'^profile/(?P<profile_id>\d+)/$', 'meetme.views.profile', name='profile'),
 
     url(r'^privacy/$', 'meetme.views.privacy', name='privacy'),
     url(r'^terms/$', 'meetme.views.terms', name='terms'),
