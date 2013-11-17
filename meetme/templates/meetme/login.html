@@ -1,6 +1,9 @@
 {% extends "site/base.html" %}
+{% load staticfiles %}
 
 {% block body_id %}splash{% endblock %}
 {% block content %}
-        <a href="{% url 'socialauth_begin' 'facebook' %}">Login with Facebook</a>
+    <div class="fb-login">
+        <a href="{% url 'socialauth_begin' 'facebook' %}"><img src="{% static "images/fb_login.png" %}"></a>
+    </div>
 {% endblock %}

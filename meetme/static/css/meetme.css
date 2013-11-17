@@ -1,6 +1,8 @@
 #splash {
     background: url(../images/splash.png) no-repeat;
     background-size: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 #spinner {
@@ -9,6 +11,20 @@
     background: url(../images/spinner.png) no-repeat;
     background-clip: content-box;
     display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+.fb-login {
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.fb-login img {
+    width: 100%;
     margin: 0;
     padding: 0;
 }
