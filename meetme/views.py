@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-
+from utils.time import get_available_times
 from meetme.models import Account, Category, Reservation, Review
 
 
@@ -44,6 +44,7 @@ def profile(request, profile_id):
     context = {
           'user': user,
           'reviews': reviews,
+	  'available_times': get_available_times(),
     }
 
     return render_to_response('meetme/profile.html',

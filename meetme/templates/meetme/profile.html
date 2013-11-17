@@ -33,9 +33,9 @@
    </div>
    <div class="row text-center">
       <div class="btn-group">
-         <button type="button" class="btn btn-default">Sat. Evening</button>
-         <button type="button" class="btn btn-default">Sun. Morning</button>
-         <button type="button" class="btn btn-default">Sun. Afternoon</button>
+	{% for time in available_times %}
+         <button type="button" class="btn btn-default">{{ time }}</button>
+	{% endfor %}
       </div>
    </div>
    <div class="row text-center">

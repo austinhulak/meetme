@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>MeetMe | It's Saturday Night... Let's Do Something Cool</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+
+    </head>
+
+    <body>
+        <div id="body-content" class="container">
+            <style>
+                .col-xs-12 {
+                    padding:10px;
+                }
+                .col-centered{
+                    float: none;
+                    margin: 0 auto;
+                }
+                .photo {
+                    position: relative;
+                    margin: 0 auto;
+                    display: table;
+                }
+                div.imageSub { position: relative; }
+                div.imageSub img { z-index: 1; }
+                div.imageSub div {
+                    position: absolute;
+                    width:100%;
+                    bottom: 0;
+                    padding: 5px;
+                }
+                div.imageSub div.blackbg {
+                    z-index: 2;
+
+                    background-color: #000;
+                    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+                    filter: alpha(opacity=30);
+                    opacity: 0.3;
+                }
+                div.imageSub div.label {
+                    z-index: 3;
+                    color:white;
+                    text-align: left;
+                }
+                .pull-left {
+                    float: left !important;
+                }
+                .image-text {
+                    z-index:100;
+                    position:absolute;
+                    color:white;
+                    font-weight:bold;
+                }
+
+            </style>
+            <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+            <button id="local" type="button" class="btn btn-primary btn-lg btn-block">I'm Available! <span class="glyphicon glyphicon-dashboard"></span></button>
+            </nav>
+            <h3 class="text-center">Find a Local</h3>
+
+            <div class="row">
+
+		{% for person in people %}
+
+                <div class="col-xs-12">
+                    <div class="imageSub photo col-centered">
+                        <a href="{% url "profile" person.id %}">
+
+                            <img src="{{ person.image_url }}" class="img-responsive img-rounded" alt="Responsive image">
+                            <div class="blackbg img-rounded">
+                                <h5 style="color:white; opacity:1;">{{ person }}<span class="pull-right glyphicon glyphicon-chevron-right"></span></h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+		{% empty %}
+		
+		No users found :(
+		
+		{% endfor %}
+            </div>
+        </div>
+        <hr />
+        <div id="footer-content" class="container">
+            <a href="/">Take me home</a>
+        </div>
+    </body>
+</html>
