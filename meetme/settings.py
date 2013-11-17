@@ -167,6 +167,7 @@ SOCIAL_AUTH_PIPELINE = (
 # https://github.com/omab/python-social-auth/issues/36#issuecomment-25330775
 #SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 
+LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 
 # A sample logging configuration. The only tangible logging

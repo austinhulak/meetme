@@ -4,8 +4,13 @@
 <html>
 <head>
     <title>Simply Meet</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
     {% compress css %}
     <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/meetme.css" %}">
     {% endcompress %}
 
     {% compress js %}
@@ -15,7 +20,7 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 </head>
-<body>
+<body id="{% block body_id %}{% endblock %}">
 {% block content %}{% endblock %}
 </body>
 </html>
