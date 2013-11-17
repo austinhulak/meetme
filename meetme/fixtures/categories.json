@@ -1,0 +1,1 @@
+[{"pk": 1, "model": "meetme.category", "fields": {"image": "", "name": "Cultural"}}, {"pk": 2, "model": "meetme.category", "fields": {"image": "", "name": "Social"}}, {"pk": 3, "model": "meetme.category", "fields": {"image": "", "name": "Culinary"}}, {"pk": 4, "model": "meetme.category", "fields": {"image": "", "name": "Active"}}]
