@@ -9,14 +9,18 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
 
     {% compress css %}
+    {% block css %}
     <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "css/meetme.css" %}">
+    {% endblock %}
     {% endcompress %}
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     {% compress js %}
+    {% block js %}
     <script type="text/javascript" src="{% static "js/bootstrap.js" %}"></script>
     <script type="text/javascript" src="{% static "js/meetme.js" %}"></script>
     <script src="{% static "js/ajax_setup.js" %}"></script>
+    {% endblock %}
     {% endcompress %}
 
 
