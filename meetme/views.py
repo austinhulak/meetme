@@ -22,6 +22,14 @@ def main(request):
                               context,
                               context_instance=RequestContext(request))
 
+@login_required
+def profile(request, profile_id):
+
+    context = {}
+
+    return render_to_response('meetme/profile.html',
+                                context, context_instance=RequestContext(request))
+
 
 def login(request):
     context = {}
