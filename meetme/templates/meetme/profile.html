@@ -46,7 +46,11 @@
 
       <div class="btn-group btn-group-sm">
 	{% for time in available_times %}
-         <button type="button" class="btn btn-default">{{ time }}</button>
+	  {% if forloop.first %}
+         <button type="button" class="btn btn-default active">{{ time }}</button>
+	  {% else %}
+	 <button type="button" class="btn btn-default">{{ time }}</button>
+	  {% endif %}
 	{% endfor %}
       </div>
    </div>
