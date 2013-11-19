@@ -146,8 +146,8 @@ def make_request(request):
         time_range=time_range
     )
     data = {
-	"reservation_id": reservation.id
-	}
+        "reservation_id": reservation.id
+    }
  
     return HttpResponse(json.dumps(data))  
 #HttpResponseRedirect(reverse('show_reservation', args=(reservation.id,)))
@@ -157,8 +157,9 @@ def show_reservation(request, reservation_id):
     reservation = Reservation.objects.get(pk=reservation_id)
     if request.method == "POST":
         reservation.local_response = request.POST['local_response']
-	reservation.save()
-	return HttpResponseRedirect(reverse('have_fun'))
+        reservation.save()
+
+        return HttpResponseRedirect(reverse('have_fun'))
 
     context = {
         'reservation': reservation,
