@@ -35,4 +35,4 @@ ENV SERVICE meetme
 
 
 # The default command to run
-CMD gunicorn_django /app/baseline/settings.py -b 0.0.0.0:8000
+CMD gunicorn_django /app/meetme/settings.py -b 0.0.0.0:8000
