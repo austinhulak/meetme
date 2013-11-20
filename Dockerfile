@@ -2,7 +2,8 @@ FROM ubuntu:quantal
 MAINTAINER Roberto Aguilar roberto@baremetal.io
 
 RUN apt-get update
-RUN apt-get install -y git libpq-dev python-dev python-pip
+RUN apt-get install -y git libpq-dev python-dev python-pip libjpeg-dev libwebp-dev libfreetype6-dev liblcms1-dev
+
 
 
 # Just add the requirements.txt file because adding the entire project will
