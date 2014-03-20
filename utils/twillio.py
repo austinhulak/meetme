@@ -8,8 +8,8 @@ from twilio.rest import TwilioRestClient
 #auth_token  = "4b56d7ab4d6baa39619d7637ec5f578f"
 
 # -- Austin's paid account:
-account_sid = "AC5c5de7f99f7d428f60798d06995f8c23"
-auth_token = "b2cce961d96157b57c84e053377aca27"
+account_sid = ""
+auth_token = ""
 
 # -- phone s
 origin_phone = "+18053954222"
